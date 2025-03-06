@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulazione Esame - StudySinc</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="Logo StudySinc" class="logo">
+            <div class="login-section">
+                <a href="#">
+                    <img src="login-icon.png" alt="Icona Accedi" class="login-icon">
+                </a>
+                <a href="#">Accedi</a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <section class="hero">
+            <h2>Simulazione Esame</h2>
+            <p>Rispondi alle domande per testare la tua preparazione. Buona fortuna!</p>
+            <div id="examResults">
+                <!-- Le domande verranno caricate qui tramite JavaScript -->
+            </div>
+            <button onclick="submitExam()" class="button">Termina Esame</button>
+        </section>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 StudySinc. Tutti i diritti riservati.</p>
+            <div class="social-links">
+                <a href="#">
+                    <img src="facebook-icon.png" alt="Facebook" class="social-icon">
+                </a>
+                <a href="#">
+                    <img src="linkedin-icon.png" alt="LinkedIn" class="social-icon">
+                </a>
+                <a href="#">
+                    <img src="x-icon.png" alt="X (ex Twitter)" class="social-icon">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Banner dinamico -->
+    <div class="dynamic-banner" id="dynamicBanner">
+        <h2>🚀 Non perdere tempo!</h2>
+        <p>Registrati ora e inizia a prepararti al meglio per i tuoi esami.</p>
+        <button>Registrati Gratis <span class="emoji">🎓</span></button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

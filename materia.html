@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudySinc - Materia</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .file-item {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .file-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .file-item h3 {
+      color: #342583;
+      margin-bottom: 10px;
+    }
+    .file-item p {
+      color: #666;
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .actions button {
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .actions button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(45deg, #4a2c9c, #342583);
+    }
+    .progress-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      width: 350px;
+      text-align: center;
+    }
+    .progress-modal.show {
+      display: block;
+    }
+    .progress-modal h2 {
+      color: #342583;
+      margin-bottom: 20px;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      width: 60%; /* Valore finto di progresso */
+      transition: width 0.5s ease;
+    }
+    .progress-modal p {
+      color: #666;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .progress-modal button {
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .progress-modal button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(45deg, #4a2c9c, #342583);
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+    .overlay.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="titoloMateria">StudySinc - Materia Selezionata</h1>
+  </header>
+  <div class="container">
+    <h2>File Disponibili</h2>
+    <div class="file-list" id="fileList">
+      <!-- I file verranno caricati dinamicamente qui -->
+    </div>
+    <div class="actions">
+      <button id="generaEsame">Genera Esame</button>
+      <button id="verificaProgressi">Verifica Progressi</button>
+    </div>
+  </div>
+
+  <!-- Modale per i progressi -->
+  <div class="overlay" id="overlay"></div>
+  <div class="progress-modal" id="progressModal">
+    <h2>I Tuoi Progressi</h2>
+    <div class="progress-bar">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <p>Stai andando alla grande! Continua così! 🚀</p>
+    <button id="chiudiProgressi">Chiudi</button>
+  </div>
+
+  <script>
+    // Funzione per ottenere il parametro "materia" dall'URL
+    function getParameterByName(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Ottieni la materia selezionata
+    const materia = getParameterByName('materia');
+
+    // Aggiorna il titolo della pagina
+    if (materia) {
+      document.getElementById('titoloMateria').textContent = `StudySinc - ${materia}`;
+    }
+
+    // Simula i file disponibili in base alla materia
+    const fileList = document.getElementById('fileList');
+    const files = {
+      Matematica: [
+        { nome: "Appunti di Matematica 1", descrizione: "PDF contenente gli appunti del primo modulo di Matematica." },
+        { nome: "Esercizi di Matematica 2", descrizione: "PDF con esercizi pratici per il secondo modulo di Matematica." },
+        { nome: "Slide di Matematica 3", descrizione: "Slide del terzo modulo di Matematica." }
+      ],
+      Statistica: [
+        { nome: "Appunti di Statistica 1", descrizione: "PDF contenente gli appunti del primo modulo di Statistica." },
+        { nome: "Esercizi di Statistica 2", descrizione: "PDF con esercizi pratici per il secondo modulo di Statistica." }
+      ],
+      // Aggiungi altre materie qui...
+    };
+
+    // Mostra i file per la materia selezionata
+    if (materia && files[materia]) {
+      files[materia].forEach(file => {
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+          <h3>${file.nome}</h3>
+          <p>${file.descrizione}</p>
+        `;
+        fileList.appendChild(fileItem);
+      });
+    } else {
+      fileList.innerHTML = "<p>Nessun file disponibile per questa materia.</p>";
+    }
+
+    // Apri il modale dei progressi
+    document.getElementById('verificaProgressi').addEventListener('click', () => {
+      document.getElementById('overlay').classList.add('show');
+      document.getElementById('progressModal').classList.add('show');
+    });
+
+    // Chiudi il modale dei progressi
+    document.getElementById('chiudiProgressi').addEventListener('click', () => {
+      document.getElementById('overlay').classList.remove('show');
+      document.getElementById('progressModal').classList.remove('show');
+    });
+
+    // Reindirizza alla pagina di generazione esame
+    document.getElementById('generaEsame').addEventListener('click', () => {
+      window.location.href = `genera_esame.html?materia=${materia}`; // Passa la materia come parametro
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudySinc - Genera Esame</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .exam {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    .exam h2 {
+      color: #342583;
+      margin-bottom: 20px;
+    }
+    .exam p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .exam button {
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .exam button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(45deg, #4a2c9c, #342583);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="titoloEsame">StudySinc - Esame Generato</h1>
+  </header>
+  <div class="container">
+    <div class="exam">
+      <h2 id="titoloEsameMateria">Esame di [Materia]</h2>
+      <p>1. Domanda 1...</p>
+      <p>2. Domanda 2...</p>
+      <p>3. Domanda 3...</p>
+      <button id="inviaEsame">Invia Esame</button>
+    </div>
+  </div>
+
+  <script>
+    // Ottieni la materia selezionata
+    const materia = new URLSearchParams(window.location.search).get('materia');
+
+    // Aggiorna il titolo della pagina
+    if (materia) {
+      document.getElementById('titoloEsame').textContent = `StudySinc - Esame di ${materia}`;
+      document.getElementById('titoloEsameMateria').textContent = `Esame di ${materia}`;
+    }
+
+    // Simula l'invio dell'esame
+    document.getElementById('inviaEsame').addEventListener('click', () => {
+      alert("Esame inviato con successo! 🎉");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudySinc</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: relative;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .logo {
+      width: 100px;
+      height: auto;
+      transition: transform 1s ease-in-out;
+    }
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+    .login-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .login-section a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: opacity 0.3s ease;
+    }
+    .login-section a:hover {
+      opacity: 0.8;
+    }
+    .login-icon {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+    .login-icon:hover {
+      transform: scale(1.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 10px 0 0;
+      font-size: 1.2rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .hero {
+      background-color: #ffffff;
+      padding: 40px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-out;
+    }
+    .hero h2 {
+      color: #342583;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    .hero a.button {
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .hero a.button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(45deg, #4a2c9c, #342583);
+    }
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .features {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .feature {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      cursor: pointer;
+    }
+    .feature-icon:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 10px rgba(52, 37, 131, 0.5));
+    }
+    .feature-icon:active {
+      transform: scale(0.95);
+    }
+    .feature h3 {
+      color: #342583;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    .feature p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .how-it-works {
+      background-color: #ffffff;
+      padding: 40px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+    }
+    .how-it-works h2 {
+      color: #342583;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .how-it-works ol {
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-left: 20px;
+    }
+    .how-it-works li {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .faq {
+      background-color: #ffffff;
+      padding: 40px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+    }
+    .faq-item h3 {
+      color: #342583;
+      margin-bottom: 10px;
+    }
+    footer {
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .social-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 1.2rem;
+    }
+    .social-links a:hover {
+      color: #d1d1d1;
+    }
+    .social-icon {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: scale(1.1);
+    }
+    .dynamic-banner {
+      position: fixed;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(45deg, #4a2c9c, #342583);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 1000;
+      transition: bottom 0.5s ease-in-out;
+    }
+    .dynamic-banner.show {
+      bottom: 20px;
+    }
+    .dynamic-banner h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .dynamic-banner p {
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+    .dynamic-banner button {
+      background: white;
+      color: #342583;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .dynamic-banner button:hover {
+      transform: scale(1.05);
+      background: #f0f4f8;
+    }
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      transition: opacity 0.3s ease;
+    }
+    .close-button:hover {
+      opacity: 0.8;
+    }
+    .emoji {
+      font-size: 1.5rem;
+      margin-left: 10px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      width: 300px;
+    }
+    .modal.show {
+      display: block;
+    }
+    .modal h2 {
+      color: #342583;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .modal button {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(45deg, #342583, #4a2c9c);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .modal button:hover {
+      background: linear-gradient(45deg, #4a2c9c, #342583);
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+    .overlay.show {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .login-section {
+        margin-top: 10px;
+      }
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+      .feature {
+        width: 80%;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .social-links {
+        margin-top: 10px;
+      }
+      .how-it-works ol {
+        padding-left: 15px;
+      }
+      .how-it-works li {
+        font-size: 1rem;
+      }
+      .dynamic-banner {
+        width: 90%;
+        left: 5%;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="logo.png" alt="Logo StudySinc" class="logo">
+      <div class="login-section">
+        <a href="#" id="loginLink">
+          <img src="login-icon.png" alt="Icona Accedi" class="login-icon">
+        </a>
+        <a href="#" id="loginLink">Accedi</a>
+      </div>
+    </div>
+    <h1>StudySinc</h1>
+    <p>Trasforma il modo in cui studi: simulazioni intelligenti, feedback immediato e risultati garantiti!</p>
+  </header>
+  <div class="container">
+    <section class="hero">
+      <h2>Benvenuto nel futuro della preparazione agli esami</h2>
+      <p>
+        StudySinc utilizza l'intelligenza artificiale per creare simulazioni di esami personalizzate, 
+        aiutandoti a identificare i tuoi punti di forza e di debolezza. Inizia ora e raggiungi il massimo dei voti!
+      </p>
+      <a href="scelta_corso.html" class="button">Inizia Ora</a>
+      <div class="hero-image">
+        <img src="nome-immagine.jpg" alt="Studente che studia">
+      </div>
+    </section>
+    <section class="features">
+      <div class="feature">
+        <img src="icona1.png" alt="Icona Simulazioni" class="feature-icon">
+        <h3>Simulazioni Realistiche</h3>
+        <p>Esami che replicano le condizioni reali, con timer e domande a difficoltà progressiva.</p>
+      </div>
+      <div class="feature">
+        <img src="icona2.png" alt="Icona Feedback" class="feature-icon">
+        <h3>Feedback Personalizzato</h3>
+        <p>Ricevi analisi dettagliate e suggerimenti per migliorare il tuo rendimento.</p>
+      </div>
+      <div class="feature">
+        <img src="icona3.png" alt="Icona Integrazione" class="feature-icon">
+        <h3>Integrazione con Materiali</h3>
+        <p>Carica appunti, PDF e slide per creare domande basate sul tuo materiale di studio.</p>
+      </div>
+    </section>
+    <section class="how-it-works">
+      <h2>Come funziona</h2>
+      <ol>
+        <li><strong>Registrati gratuitamente</strong> con il tuo account universitario.</li>
+        <li><strong>Configura il tuo profilo</strong> inserendo il tuo corso di studi e gli esami da sostenere.</li>
+        <li><strong>Troverai tutto il materiale</strong> (appunti, slide, PDF) per creare simulazioni personalizzate.</li>
+        <li><strong>Esegui le simulazioni</strong> e ricevi feedback dettagliati per migliorare.</li>
+        <li><strong>Migliora i tuoi risultati</strong> monitorando i grafici dei tuoi esami passati! </li>
+      </ol>
+    </section>
+    <section class="faq">
+      <h2>Domande Frequenti</h2>
+      <div class="faq-item">
+        <h3>Come posso accedere a StudySinc?</h3>
+        <p>Basta registrarsi con il proprio account universitario per accedere gratuitamente a tutte le funzionalità.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Posso usare StudySinc su mobile?</h3>
+        <p>Sì, StudySinc è ottimizzato per dispositivi mobili e può essere utilizzato su smartphone e tablet.</p>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2023 StudySinc. Tutti i diritti riservati.</p>
+      <div class="social-links">
+        <a href="#">
+          <img src="facebook-icon.png" alt="Facebook" class="social-icon">
+        </a>
+        <a href="#">
+          <img src="linkedin-icon.png" alt="LinkedIn" class="social-icon">
+        </a>
+        <a href="#">
+          <img src="x-icon.png" alt="X (ex Twitter)" class="social-icon">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Banner dinamico -->
+  <div class="dynamic-banner" id="dynamicBanner">
+    <button id="closeBanner" aria-label="Chiudi banner" class="close-button">×</button>
+    <h2>🚀 Non perdere tempo!</h2>
+    <p>Registrati ora e inizia a prepararti al meglio per i tuoi esami.</p>
+    <button id="registerBanner">Registrati Gratis <span class="emoji">🎓</span></button>
+  </div>
+
+  <!-- Modale di accesso -->
+  <div class="overlay" id="overlay"></div>
+  <div class="modal" id="loginModal">
+    <h2>Accedi</h2>
+    <input type="email" placeholder="Inserisci la tua mail universitaria" required>
+    <input type="password" placeholder="Inserisci la tua password" required>
+    <button id="loginButton">Accedi</button>
+  </div>
+
+  <!-- Modale di registrazione -->
+  <div class="modal" id="registerModal">
+    <h2>Registrati</h2>
+    <input type="text" placeholder="Nome" required>
+    <input type="text" placeholder="Cognome" required>
+    <input type="email" placeholder="Inserisci la tua mail universitaria" required>
+    <input type="password" placeholder="Crea una password" required>
+    <button id="registerButton">Registrati</button>
+  </div>
+
+  <script>
+    // Mostra il banner dinamico quando l'utente arriva in fondo alla pagina
+    window.addEventListener('scroll', () => {
+      const banner = document.getElementById('dynamicBanner');
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+
+      if (scrollPosition >= pageHeight - 50) {
+        banner.classList.add('show');
+      } else {
+        banner.classList.remove('show');
+      }
+    });
+
+    // Chiudi il banner dinamico
+    document.getElementById('closeBanner').addEventListener('click', () => {
+      const banner = document.getElementById('dynamicBanner');
+      banner.classList.remove('show');
+    });
+
+    // Mostra il modale di accesso
+    document.getElementById('loginLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('overlay').classList.add('show');
+      document.getElementById('loginModal').classList.add('show');
+    });
+
+    // Mostra il modale di registrazione
+    document.getElementById('registerBanner').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('overlay').classList.add('show');
+      document.getElementById('registerModal').classList.add('show');
+    });
+
+    // Chiudi i modali
+    document.getElementById('overlay').addEventListener('click', () => {
+      document.getElementById('overlay').classList.remove('show');
+      document.getElementById('loginModal').classList.remove('show');
+      document.getElementById('registerModal').classList.remove('show');
+    });
+  </script>
+</body>
+</html>
